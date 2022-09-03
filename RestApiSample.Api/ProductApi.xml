@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RestApiSample.Api</name>
+    </assembly>
+    <members>
+        <member name="M:RestApiSample.Api.Controllers.ProductController.GetAllProducts">
+            <summary>
+            Get list of all products.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RestApiSample.Api.Controllers.ProductController.GetProduct(System.Int32)">
+            <summary>
+            Get product by Id
+            </summary>
+            <param name="productId">The Id of product</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestApiSample.Api.Controllers.ProductController.CreateProduct(RestApiSample.Api.Data.DTOs.CreateProductDto)">
+            <summary>
+            Create new product
+            </summary>
+            <param name="createProductDto">The DTO for create product</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestApiSample.Api.Controllers.ProductController.UpdateProduct(System.Int32,RestApiSample.Api.Data.DTOs.UpdateProductDto)">
+            <summary>
+            Update product
+            </summary>
+            <param name="productId">The Id of product</param>
+            <param name="updateProductDto">The DTO for update product</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestApiSample.Api.Controllers.ProductController.DeleteProduct(System.Int32)">
+            <summary>
+            Delete product
+            </summary>
+            <param name="productId">The Id of product</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestApiSample.Api.Controllers.ProductV2Controller.GetAllProducts">
+            <summary>
+            Get list of all products in v2 controller.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
