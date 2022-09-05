@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiSample.Api", "RestApiSample.Api\RestApiSample.Api.csproj", "{9B2F3D96-B99C-4CA2-863C-93A8FA04378F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestApiSample.Api", "RestApiSample.Api\RestApiSample.Api.csproj", "{9B2F3D96-B99C-4CA2-863C-93A8FA04378F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiSample.Web", "RestApiSample.Web\RestApiSample.Web.csproj", "{539ECA63-132E-403A-A567-0D2A0CC13602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9B2F3D96-B99C-4CA2-863C-93A8FA04378F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B2F3D96-B99C-4CA2-863C-93A8FA04378F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B2F3D96-B99C-4CA2-863C-93A8FA04378F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539ECA63-132E-403A-A567-0D2A0CC13602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539ECA63-132E-403A-A567-0D2A0CC13602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539ECA63-132E-403A-A567-0D2A0CC13602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539ECA63-132E-403A-A567-0D2A0CC13602}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

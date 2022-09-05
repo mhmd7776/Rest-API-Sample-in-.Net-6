@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
-using RestApiSample.Api.Data.DTOs;
+using RestApiSample.Web.Data.ViewModels;
 
-namespace RestApiSample.Api.Validators
+namespace RestApiSample.Web.Validators
 {
-    public class CreateProductDtoValidator : AbstractValidator<CreateProductDto>
+    public class CreateProductViewModelValidator : AbstractValidator<CreateProductViewModel>
     {
-        public CreateProductDtoValidator()
+        public CreateProductViewModelValidator()
         {
             RuleFor(s => s.Title)
                 .NotNull()
@@ -22,11 +22,6 @@ namespace RestApiSample.Api.Validators
                 .NotNull()
                 .IsInEnum()
                 .WithMessage("The selected item is not exists.");
-
-            RuleFor(s => s.ImagePath)
-                .NotNull()
-                .NotEmpty()
-                .MaximumLength(100);
 
             RuleFor(s => s.Description)
                 .NotNull()

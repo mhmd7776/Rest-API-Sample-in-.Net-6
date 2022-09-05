@@ -30,7 +30,7 @@ namespace RestApiSample.Api.Validators
                 .IsInEnum()
                 .WithMessage("The selected item is not exists.");
 
-            RuleFor(s => s.ImageName)
+            RuleFor(s => s.ImagePath)
                 .NotNull()
                 .NotEmpty()
                 .MaximumLength(100);

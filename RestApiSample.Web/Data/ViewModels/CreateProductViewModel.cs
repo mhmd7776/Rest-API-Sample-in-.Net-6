@@ -1,9 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using RestApiSample.Api.Data.Models;
-
-namespace RestApiSample.Api.Data.DTOs
+﻿namespace RestApiSample.Web.Data.ViewModels
 {
-    public class CreateProductDto
+    public class CreateProductViewModel
     {
         public string? Title { get; set; }
 

@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using RestApiSample.Api.Data.Models;
 
-namespace RestApiSample.Api.Data.DTOs
+namespace RestApiSample.Web.Data.ViewModels
 {
-    public class UpdateProductDto
+    public class ProductViewModel
     {
         public int ProductId { get; set; }
 
@@ -16,5 +15,14 @@ namespace RestApiSample.Api.Data.DTOs
         public string? ImagePath { get; set; }
 
         public string? Description { get; set; }
+
+        public DateTime CreateDate { get; set; }
+    }
+
+    public enum ProductType
+    {
+        [Display(Name = "Digital")] Digital = 1,
+
+        [Display(Name = "Physical")] Physical = 2
     }
 }

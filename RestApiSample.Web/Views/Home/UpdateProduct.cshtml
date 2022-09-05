@@ -1,0 +1,72 @@
+﻿@using RestApiSample.Web.Utilities.Statics
+@using RestApiSample.Web.Data.ViewModels
+@model RestApiSample.Web.Data.ViewModels.UpdateProductViewModel
+
+@{
+    ViewData["Title"] = "Update Product";
+}
+
+<form method="post" asp-action="UpdateProduct" asp-controller="Home" enctype="multipart/form-data">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12 d-flex justify-content-between align-items-center">
+                <h3>@ViewData["Title"]</h3>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Back To List</a>
+            </div>
+
+            <hr class="mt-3 mb-4" />
+
+            <div class="col-xl-8 col-lg-7 col-md-6 col-sm-12">
+                <div class="row">
+                    
+                    <input type="hidden" asp-for="ProductId"/>
+                    <input type="hidden" asp-for="ImagePath"/>
+
+                    <div class="col-lg-6 col-sm-12 mb-3">
+                        <label asp-for="Title" class="form-label">Title</label>
+                        <input type="text" class="form-control" asp-for="Title">
+                        <span asp-validation-for="Title" class="error-style"></span>
+                    </div>
+                    
+                    <div class="col-lg-6 col-sm-12 mb-3">
+                        <label asp-for="Price" class="form-label">Price</label>
+                        <input type="number" class="form-control" asp-for="Price" min="0">
+                        <span asp-validation-for="Price" class="error-style"></span>
+                    </div>
+                    
+                    <div class="col-lg-6 col-sm-12 mb-3">
+                        <label asp-for="Type" class="form-label">Type</label>
+                        <select asp-for="Type" class="form-select" asp-items="Html.GetEnumSelectList(typeof(ProductType))">
+                            <option value="">Please specify the type of product</option>
+                        </select>
+                        <span asp-validation-for="Type" class="error-style"></span>
+                    </div>
+                    
+                    <div class="col-lg-6 col-sm-12 mb-3">
+                        <label class="form-label">Image</label>
+                        <input class="form-control" id="productImage" name="productImage" type="file" accept=".png,.jpg,.jpeg">
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <textarea class="form-control" asp-for="Description" rows="3"></textarea>
+                        <span asp-validation-for="Description" class="error-style"></span>
+                    </div>
+                    
+                    <div class="col-12 mb-3">
+                        <button type="submit" class="btn btn-warning w-100">Update</button>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12 text-center">
+                <img src="@(!string.IsNullOrEmpty(Model.ImagePath) ? Model.ImagePath : StaticDetails.DefaultImagePath)" class="img-thumbnail mb-3 w-100" id="previewImage" alt="preview-image">
+            </div>
+
+        </div>
+    </div>
+</form>
+

@@ -13,9 +13,7 @@ namespace RestApiSample.Api.Data.DTOs
 
         public ProductType Type { get; set; }
 
-        public string? ImageName { get; set; }
-
-        public DateTime? ExpireDate { get; set; }
+        public string? ImagePath { get; set; }
 
         public string? Description { get; set; }
 

@@ -16,10 +16,10 @@ namespace RestApiSample.Api.Data.Models
         [Required]
         public ProductType Type { get; set; }
 
-        public string? ImageName { get; set; }
+        [Required]
+        public string? ImagePath { get; set; }
 
-        public DateTime? ExpireDate { get; set; }
-
+        [Required]
         public string? Description { get; set; }
 
         public DateTime CreateDate { get; set; } = DateTime.Now;
