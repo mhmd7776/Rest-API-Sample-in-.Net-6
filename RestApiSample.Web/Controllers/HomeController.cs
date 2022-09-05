@@ -189,12 +189,21 @@ namespace RestApiSample.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteProduct(int id)
         {
+            var product = await _productRepository.GetProductByIdAsync(StaticDetails.ProductsApiUrl, id);
+
+            if (product == null)
+            {
+                return new JsonResult(new { status = "Error", message = "The input values ​​are not valid." });
+            }
+
             var result = await _productRepository.DeleteProductByIdAsync(StaticDetails.ProductsApiUrl, id);
 
             if (!result)
             {
                 return new JsonResult(new { status = "Error", message = "An error has occurred." });
             }
+
+            product.ImagePath?.Split("/").Last().DeleteFile(StaticDetails.ProductImageUploadPath);
 
             return new JsonResult(new { status = "Success", message = "The product deleted successfully." });
         }
