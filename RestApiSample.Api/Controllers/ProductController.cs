@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestApiSample.Api.Data.DTOs;
 using RestApiSample.Api.Data.Models;
@@ -72,6 +73,7 @@ namespace RestApiSample.Api.Controllers
         /// <param name="createProductDto">The DTO for create product</param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ProductDto))]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProductDto? createProductDto)
         {
@@ -97,6 +99,7 @@ namespace RestApiSample.Api.Controllers
         /// <param name="updateProductDto">The DTO for update product</param>
         /// <returns></returns>
         [HttpPatch("{productId:int}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateProduct(int productId, [FromBody] UpdateProductDto? updateProductDto)
@@ -126,6 +129,7 @@ namespace RestApiSample.Api.Controllers
         /// <param name="productId">The Id of product</param>
         /// <returns></returns>
         [HttpDelete("{productId:int}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteProduct(int productId)

@@ -45,5 +45,19 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:RestApiSample.Api.Controllers.UserController.Login(RestApiSample.Api.Data.DTOs.AuthenticateUserDto)">
+            <summary>
+                Authentication user by username and password
+            </summary>
+            <param name="authenticateUserDto">Login user dto</param>
+            <returns></returns>
+        </member>
+        <member name="M:RestApiSample.Api.Controllers.UserController.Register(RestApiSample.Api.Data.DTOs.AuthenticateUserDto)">
+            <summary>
+            Register new user by default user role
+            </summary>
+            <param name="authenticateUserDto">Register user Dto</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

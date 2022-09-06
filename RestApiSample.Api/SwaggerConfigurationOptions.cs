@@ -21,7 +21,7 @@ namespace RestApiSample.Api
                 options.SwaggerDoc(description.GroupName, new OpenApiInfo
                 {
                     Title = $"Product Api - v{description.ApiVersion}",
-                    Description = "Rest Api sample in asp.net core",
+                    Description = "Rest Api sample in .net 6",
                     Version = description.ApiVersion.ToString(),
                     Contact = new OpenApiContact
                     {
@@ -31,8 +31,40 @@ namespace RestApiSample.Api
                     }
                 });
             }
+
             var path = Path.Combine(Directory.GetCurrentDirectory(), "ProductApi.xml");
             options.IncludeXmlComments(path);
+
+            #region JWT
+
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Name = "Authorization",
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                Description = "Valid token example : Bearer paste-your-token-here"
+            });
+
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Scheme = "oauth2",
+                        Name = "Bearer",
+                        In = ParameterLocation.Header,
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new List<string>()
+                }
+            });
+
+            #endregion
         }
     }
 }

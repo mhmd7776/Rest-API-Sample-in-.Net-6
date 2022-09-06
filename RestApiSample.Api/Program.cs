@@ -1,14 +1,18 @@
+using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Interfaces;
 using Microsoft.OpenApi.Models;
 using RestApiSample.Api;
 using RestApiSample.Api.Data.DbContext;
+using RestApiSample.Api.Data.DTOs;
 using RestApiSample.Api.Mapping;
 using RestApiSample.Api.Repositories.Implementations;
 using RestApiSample.Api.Repositories.Interfaces;
@@ -22,6 +26,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.Configure<SecretKeys>(builder.Configuration.GetSection("Keys"));
+
+builder.Services.AddCors();
 
 #region Automapper
 
@@ -34,6 +43,7 @@ builder.Services.AddAutoMapper(typeof(MappingConfiguration));
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<UpdateProductDtoValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateProductDtoValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<AuthenticateUserDtoValidator>();
 
 #endregion
 
@@ -69,6 +79,29 @@ builder.Services.AddSwaggerGen();
 
 #endregion
 
+#region Authentication
+
+var key = Encoding.ASCII.GetBytes(builder.Configuration.GetSection("Keys:AuthenticationSecretKey").Value);
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+#endregion
+
 #endregion
 
 #region Middlewares
@@ -94,6 +127,12 @@ app.UseSwaggerUI(options =>
 
 #endregion
 
+app.UseCors(options =>
+{
+    options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+});
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
